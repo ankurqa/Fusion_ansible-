@@ -21,7 +21,7 @@
       blockinfile:
         path: /etc/fusioninventory/agent.cfg
         block: |
-         server=http://10.0.1.110/glpi/plugins/fusioninventory/front/plugin_fusioninventory.communication.php
+         server=http://server_ip_address/glpi/plugins/fusioninventory/front/plugin_fusioninventory.communication.php
       sudo: yes 
 
 
