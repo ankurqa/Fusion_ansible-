@@ -1,0 +1,32 @@
+- hosts: all
+  tasks:
+   -  name: Update apt packages
+      command: "sudo apt-get update" 
+      sudo: yes
+
+
+
+   -  name: installing  packages 
+      apt:
+        name: "{{ item }}"
+        state: present
+      sudo: yes
+      with_items:
+        - libcrypt-ssleay-perl
+        - cifs-utils
+        - openssh-server
+        - fusioninventory-agent
+   
+   -  name: Edit file
+      blockinfile:
+        path: /etc/fusioninventory/agent.cfg
+        block: |
+         server=http://10.0.1.110/glpi/plugins/fusioninventory/front/plugin_fusioninventory.communication.php
+      sudo: yes 
+
+
+
+   -  command: "sudo fusioninventory-agent --force"
+      sudo: yes
+   -  command: "sudo reboot"
+      sudo: yes
